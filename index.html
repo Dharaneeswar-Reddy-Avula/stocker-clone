@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script>
+        tailwind.config = {
+            mode: 'jit',
+            theme: {
+                extend: {},
+            },
+            variants: {},
+            plugins: [],
+        }
+    </script>
+    <style>
+        .navigation-menu .links a {
+            color: #ffffff !important; 
+            text-decoration: none; 
+        }
+    
+        .navigation-menu .pagemenu a {
+            color: #000 !important; 
+        }
+    
+       
+        .navigation-menu .links a:hover {
+            background-color: #00d084 !important; 
+            color: white !important;
+        }
+    
+       
+        .pagemenu a:hover {
+            color: #00d048 !important; 
+        }
+      
+         
+        
+        
+            .blogSwiper{
+             max-width: 100%;
+              height: 100%;
+            }
+        
+            .blog-slide {
+              text-align: center;
+              font-size: 18px;
+              background: #fff;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+              .blog-content {
+                position: relative;
+                transform: translateY(150px);
+                opacity: 1;
+                transition: all 1s ease;
+            }
+            
+            .blog-content.make-blog-active {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+            
+              .mySwiper{
+                position: relative;
+                transform: translateY(150px);
+                opacity: 1;
+                transition: all 1s ease;
+              }
+              .mySwiper.make-blogswipe-active{
+                transform: translateY(0px);
+                opacity: 1;
+              }
+            @media(max-width:768px){
+                #TEST-SWIPER{
+                    transform: translateY(100px);
+                    
+                }
+              
+
+            }
+        
+        
+         
+    
+    
+    
+    
+       
+    </style>
+    
+    </head>
+    <body>
+        <header>
+            <div class="top details h-[40px] w-full bg-[#f8f8f8] hidden lg:flex justify-between items-center px-[48px]">
+                <div class="cont1 flex">
+                        <a href="#"><i class="fas fa-map-marker-alt text-[#00d084]  px-[15px] py-[5px]"></i>
+                        Find A Location</a>
+                        <a href="tel:+01234567890"> <i class="fas fa-phone text-[#00d084] px-[15px] py-[5px]"></i>
+                       +01234567890</a>
+                       <a href="mailto:example@gmail.com"><i class="fas fa-envelope text-[#00d084] px-[15px] py-[5px]"></i>
+                        Example@gmail.com</a>
+                </div>
+                <div class="cont2 flex">
+                   
+                       <a href="#"><i class="fa fa-user text-[#00d084] px-[15px] py-[5px]"></i>
+                       Register</a> 
+                       <a href="#"> <i class="fa fa-sign-in text-[#00d084] px-[15px] py-[5px]"></i>
+                        Login</a>
+                        <div class="dropdown relative">
+                        <a href="#">  <i class="fas fa-home text-[#00d084] px-[15px] py-[5px]"></i>
+                        My Dashboard <i class="fa-solid fa-angle-down text-[#00d084]"></i>
+                    
+                    <div class="options  flex flex-col  bg-[#f8f8f8] absolute left-[20px] h-[180px] w-[180px] pt-[11px] pb-[8px] rounded-md z-2">
+                        <a href="#" class="block py-[4px] px-[16px] hover:text-[white] hover:bg-[#00d084]"><i class="fas fa-user pr-[5px]"></i> My Profile</a>
+                        <a href="#" class="block py-[4px] px-[16px] hover:text-[white] hover:bg-[#00d084]"><i class="fas fa-comment pr-[5px]"></i>Inbox</a>
+                        <a href="#" class="block py-[4px] px-[16px] hover:text-[white] hover:bg-[#00d084]"><i class="fas fa-bell pr-[5px]"></i>Notifications</a>
+                        <a href="#" class="block py-[4px] px-[16px] hover:text-[white] hover:bg-[#00d084]"><i class="fas fa-cog me pr-[5px]"></i>Account Settings</a>
+                        <a href="#" class="block py-[4px] px-[16px] hover:text-[white] hover:bg-[#00d084]"><i class="fas fa-power-off me pr-[5px]"></i>Log Out</a>                        
+                    </div>
+                </a>
+                      </div>
+                    </div>
+                </div>
+                <nav class="px-[20px] w-full h-[100px] bg-[white] z-20 lg:bg-transparent border-b-[1px] border-[gray] flex justify-between items-center relative lg:px-[48px]">
+                    <div class="logo">
+                       <h1 class="text-[#00d084] text-[36px] flex"> <i class="fas fa-search-dollar me-3 alt pt-[10px]"></i> Stocker</h1>
+                    </div>
+                    <div class="navigation-menu w-[50%] text-[white]">
+                        <div class="links hidden text-[white] lg:flex">
+                            <a href="#home" class="home py-[35px] mr-[25px]" id="home">Home</a>
+                            <a href="#about" class="about py-[35px] mr-[25px]">About</a>
+                            <a href="#services" class="services py-[35px] mr-[25px]">Services</a>
+                            <a href="#blogs" class="blogs py-[35px] mr-[25px]">Blogs</a>
+                            <div class="pagesdrop hidden lg:py-[35px] lg:mr-[25px] lg:flex flex-col">
+                                <a href="#pages" class="pages">Pages <i class="fa-solid fa-angle-down"></i>
+                                    <div class="pagemenu absolute top-[100px] right-[250px] bg-[#f8f8f8] h-[200px] w-[150px] px-[10px] py-[7px] rounded-lg">
+                                        <a href="OurFeatures.html" class="block p-1">Our Features</a>
+                                        <a href="team.html" class="block p-1">Our Team</a>
+                                        <a href="testimonial.html" class="block p-1">Testimonial</a>
+                                        <a href="offer.html" class="block p-1">Our Offer</a>
+                                        <a href="faqs.html" class="block p-1">FAQ'S</a>
+                                        <a href="404.html" class="block p-1">404PAGE</a>
+                                    </div>
+                                </a>
+                            </div>
+                            <a href="#contactus" class="contactus lg:py-[35px] lg:mr-[25px]">Contact Us</a>
+                            <button class="getStarted text-[white] bg-[#00d084] h-[40px]  rounded-[20px] m-auto z-2">
+                                <a href="#">Get Started</a>
+                            </button>
+                        </div>
+                    </div>    
+                    <div class="menuicon h-[50px] w-[70px] border-[1px] border-[#00d084] flex justify-center items-center rounded-md lg:hidden">
+                       <i class="fa fa-bars text-[22px] text-[#00d084] py-[10px] px-[20px]"></i>
+                    </div>
+                </nav>
+        </header>
+       <!-- home -->
+  <div class="slideshow-container w-full h-[800px] relative mt-[-100px] z-10">
+        <div class="mySlides fade h-[800px] relative">
+            <div class="layer absolute top-0 left-0 w-full h-[800px] bg-[black] z-30 opacity-50"></div>
+            <img src="img/carousel-1.jpg" class="inImage h-[800px] object-cover z-20">
+            <div class="content-carousel w-[720px] h-[500px] md:text-right md:px-[20px] absolute top-[30%] right-0 z-50">
+                <h4 class="text-[#00d084] font-semibold text-[22px] md:text-[24px]">WELCOME TO STOCKER</h4>
+                <h1 class="font-bold text-[white] text-[2.5rem] md:text-[3.5rem]">INVEST YOUR MONEY WITH HIGHER RETURN</h1>
+                <p class="text-[20px] text-[white] mb-[48px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p> 
+                <button class="watch text-[#00d084] bg-[#f8f8f8] h-[60px] w-[222px] rounded-[30px] mr-[8px]" type="button">
+                    <i class="fas fa-play-circle me"></i> Watch More
+                </button> 
+                <button class="Learn bg-[#00d084] text-[#f8f8f8] h-[60px] w-[200px] rounded-[30px] mr-[8px]" type="button">
+                    Learn More
+                </button>   
+                <div class="media flex justify-end m-[20px] mt-[30px]">
+                    <h1 class="mr-[8px] text-[32px] text-[white]">Follow Us:</h1>
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="mySlides fade relative">
+            <div class="layer absolute top-0 left-0 w-full h-[800px] bg-[black] z-30 opacity-50"></div>
+            <img src="img/carousel-2.jpg" class="w-full h-[800px] object-cover z-20">
+            <div class="content-carousel2 w-full h-[500px] px-[70px] text-center absolute top-[25%] mx-auto z-50">
+                <h4 class="text-[#00d084] font-semibold text-[22px] md:text-[24px]">WELCOME TO STOCKER</h4>
+                <h1 class="font-bold text-[white] text-[2.5rem] md:text-[3.5rem]">INVEST YOUR MONEY WITH HIGHER RETURN</h1>
+                <p class="text-[22px] text-[white] mb-[48px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p> 
+                <div class="carousel-btns flex flex-wrap">
+                <button class="watch text-[#00d084] bg-[#f8f8f8] h-[60px] w-[222px] rounded-[30px] mr-[8px]" type="button">
+                    <i class="fas fa-play-circle me"></i> Watch More
+                </button> 
+                <button class="Learn bg-[#00d084] text-[#f8f8f8] h-[60px] w-[200px] rounded-[30px] mr-[8px]" type="button">
+                    Learn More
+                </button> 
+            </div>  
+                <div class="media flex justify-center m-[20px] mt-[24px]">
+                    <h1 class="mr-[8px] text-[32px] text-[white]">Follow Us:</h1>
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#f8f8f8] text-[#00d084] rounded-full flex justify-center items-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a class="prev bg-[#00d084] text-[white] text-[20px] h-[60px] w-[60px] rounded-[50%] flex justify-center items-center ml-[50px]" onclick="plusSlides(1)">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a class="next bg-[#00d084] text-[white] text-[20px] h-[60px] w-[60px] rounded-[50%] flex justify-center items-center ml-[30px]" onclick="plusSlides(-1)">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div> 
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1) "></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div>
+<!--about-->    
+<div class="about-info flex space-between m-auto bg-[white]" id="#about">
+    <div class="about-content mt-[48px] px-[24px]  rounded-lg">
+        <h4 class="text-[#00d048] text-[24px] mb-[8px]">About Us</h4>
+        <h1 class="text-[48px] mb-[24px] leading-none font-medium">Meet our company unless miss the opportunity</h1>
+        <p class="data mb-[24px] text-[#787878] text-[16px]">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum velit temporibus repudiandae ipsa, eaque perspiciatis cumque incidunt tenetur sequi reiciendis.</p>
+        <div class="about-container bg-[#f8f8f8]">
+            <div class="info flex">
+            <div class="consult  w-[330px] h-[100px] flex   bg-[#f8f8f8]">
+                <div class="light h-[48px] w-[33px] mr-[20px] mt-[8px]">
+                <i class="fas fa-lightbulb fa-3x text-[#00d048]"></i>
+            </div>
+                <div class="textin flex flex-col">
+                    <h4 class="text-[24px]">Bussiness Consulting</h4>
+                    <p class="mb-[16px] text-[16px] text-[#787878]">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                </div>
+            </div>
+            <div class="exp  w-[330px] h-[100px] flex px-[12px] bg-[#f8f8f8]">
+                <div class="boomark h-[48px] w-[33px] mr-[30px] ">
+                    <i class="bi bi-bookmark-heart-fill text-[#00d048] text-[48px]"></i>
+            </div>
+                <div class="textin flex flex-col">
+                    <h4 class="text-[24px]">Years Of Experience</h4>
+                    <p class="mb-[16px] text-[16px] text-[#787878]">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="info-2 flex gap-20 mx-[5px] bg-[#f8f8f8]">
+        <div class="discover w-[200px] h-[60px] bg-[#00d048] text-white flex justify-center items-center rounded-[30px] mx-[20px] ">
+            <a href="#">Discover Now</a>
+        </div>
+        <div class="call w-[300px] h-[60px] flex bg-[#f8f8f8]">
+            <div class="phone">
+            <i class="fa-solid fa-phone text-[#00d048] text-[30px] mx-[20px] mt-[5px]"></i>
+            </div>
+            <div class="textin flex flex-col ">
+                <h4 class="text-[24px]">Call Us</h4>
+                <p class="mb-[16px] text-[16px] text-[#787878]">+01234567890</p>
+            </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <div class="about-imgs flex flex-col mt-[48px] px-[24px] rounded-md relative">
+        <div class="img1  bg-[#00d048] rounded-t-lg relative">
+          <img src="img/about-3.png" class="h-[150px] w-[150px] absolute right-[-10px] top-[-20px] fixed-img">
+          <img src="img/about-4.png" class="h-[120px] w-[120px] absolute left-0 top-[7px] rotate-[90deg]">
+          <img src="img/about-2.png" class="aboutimg ">
+        </div>
+        <div class="img2  rounded-b-xl">
+          <img src="img/about-5.jpg" class="aboutimg rounded-b-xl ">
+        </div>
+      </div>
+</div> 
+<!--SERRVICE-->
+<div class="services w-full h-auto flex flex-col sm:p-[12px]">
+    <div class="sercontent w-full max-w-[800px] text-center p-[12px] md:pb-[48px] m-auto">
+        <h4 class="text-[#00d084] text-[24px] font-semibold">Our Services</h4>
+        <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">We Services provided best offer</h1>
+        <p class="text-[#787878]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+    </div>
+    <div class="service-cards  flex flex-wrap justify-center gap-8">
+        <div class="serCard bg-[#f8f8f8] flex flex-col rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-1.jpg" class="ser-image w-[356px] h-[273px] z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300 ">
+            <div class="serinfo w-[356px] h-[250px] p-[24px] rounded-b-[15px] z-[20]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Startergy Counsulting</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        <div class="serCard bg-[#f8f8f8]  flex flex-col  rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-2.jpg" class="w-[356px] h-[273px]  z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300">
+            <div class="serinfo w-[356px] h-[250px] p-[24px]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Financial Advisory</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        <div class="serCard bg-[#f8f8f8]  flex flex-col  rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-3.jpg" class="w-[356px] h-[273px]  z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300">
+            <div class="serinfo w-[356px] h-[250px] p-[24px]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Managements</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        <div class="serCard bg-[#f8f8f8]  flex flex-col  rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-4.jpg" class="w-[356px] h-[273px]  z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300">
+            <div class="serinfo w-[356px] h-[250px] p-[24px]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Supply Optimisation</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        <div class="serCard bg-[#f8f8f8]  flex flex-col  rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-5.jpg" class="w-[356px] h-[273px]  z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300">
+            <div class="serinfo w-[356px] h-[250px] p-[24px]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Hr Counsulting</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        <div class="serCard bg-[#f8f8f8]  flex flex-col  rounded-t-[15px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+            <img src="img/service-6.jpg" class="w-[356px] h-[273px]  z-[10] rounded-t-[15px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300">
+            <div class="serinfo w-[356px] h-[250px] p-[24px]">
+                        <a href="#" class="text-[24px] font-medium mb-[24px]">Marketing Counsulting</a>
+                        <p class="text-[#787878] mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                        <button class="Learn bg-[#00d084] h-[40px] w-[136px] text-[white] rounded-[30px]">Learn More</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!--OFFER-->
+<div class="offer w-full h-auto flex flex-col sm:p-[12px]">
+<div class="offer-content w-full max-w-[800px] text-center  md:pb-[48px] m-auto">
+    <h4 class="text-[#00D048] text-[24px] font-semibold">Our Offer</h4>
+    <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">Benifits Offer</h1>
+    <p class="text-[#787878] px-[30px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+</div>
+
+<div class="offer-info w-full flex justify-center gap-8 items-center flex-wrap">
+    <div class="box-1 w-[360px] p-[48px] bg-[#f8f8f8] flex flex-col gap-3">
+      <button class="offerlink bg-[white] p-[24px] mb-[24px] text-left w-full rounded-lg">Lending money for investment of your new projects</button>
+      <button class="offerlink bg-[white] w-full p-[24px] mb-[24px] rounded-lg text-left">Lending money for investment of your new projects</button>
+      <button class="offerlink bg-[white] w-full p-[24px] mb-[24px] rounded-lg text-left">Lending money for investment of your new projects</button>
+      <button class="offerlink bg-[white] w-full p-[24px] rounded-lg text-left">Lending money for investment of your new projects</button>
+    </div>
+    
+    <div class="box2 flex flex-col md:flex-row">
+      <div class="offimg w-[360px] mt-[24px] px-[12px]">
+        <img src="img/offer-1.jpg" class="box-img">
+      </div>
+      <div class="box2-info flex flex-col w-[273px] font-bold leading-10 mt-[24px] px-[12px]">
+        <h1 class="heading text-[48px] w-[248px] leading-tight mb-[24px]">The stock market provides a venue...</h1>
+        <p class="para w-[248px] leading-tight mb-[24px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis amet sequi molestiae tenetur eum mollitia, blanditiis, magnam illo magni error dolore unde perspiciatis tempore et totam corrupti dignissimos aut praesentium?</p>
+        <button class="Learn bg-[#00d084] text-[#f8f8f8] h-[40px] w-[137px] rounded-[30px] mr-[8px]" type="button">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+ 
+<!--BLOGS-->
+<div class="blog w-full h-auto flex flex-col p-[12px]">
+    <div class="blog-content w-full max-w-[800px] text-center  md:pb-[48px] m-auto">
+        <h4 class="text-[#00d084] text-[24px] font-semibold">Our Blogs</h4>
+        <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">Articles For Pro Traders</h1>
+        <p class="text-[#787878] px-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+    </div>
+    <div class="swiper mySwiper blogSwiper relative py-[70px]">
+        <div class="button-next absolute top-[20px] right-[20px] h-[36px] w-[78px] rounded-[20px] bg-[#00d084] text-[white] flex justify-center items-center mx-[15px]"><i class="fa fa-angle-right "></i></div>
+        <div class="button-prev absolute top-[20px] px-[20px] mx-[30px] h-[36px] w-[78px] rounded-[20px] bg-[#00d084] text-[white] flex justify-center items-center"><i class="fa fa-angle-left "></i></div>
+        <div class="swiper-wrapper">
+            
+            <div class="swiper-slide blog-slide  bg-[#f8f8f8] flex flex-col rounded-[15px] group  border-none overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+                <div class="imagediv relative">
+                <img src="img/service-1.jpg" class="ser-image w-[356px] h-[273px] z-[10]  rounded-[50px] px-[20px] py-[30px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300 ">
+                <button class="highlight w-[152px] h-[38px] bg-[#00d084] text-[white] py-[6px] hover:text-[black] rounded-lg absolute bottom-[50px] left-[50px]">
+                               <a href="#">Dividend Stocks</a>
+                </button>
+            </div>
+                <div class="serinfo w-[356px] p-[24px] rounded-b-[15px] z-[20]">
+                            <a href="#" class="text-[24px] text-left font-medium mb-[24px]  hover:text-[#00d084]">Options Trading Bussiness</a>
+                            <p class="text-[#787878] mb-[24px] px-[20px] text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                            <div class="Admin  w-full  float-left flex px-[10px]">
+                                <img src="img/testimonial-1.jpg" class="h-[60px] w-[60px] rounded-full">
+                                <div class="deta flex flex-col px-[20px] items-start">
+                                    <h5 class="text-[20px]">Admin</h5>
+                                    <p class="text-[#787878]">October 9,2025</p>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            
+           
+                <div class="swiper-slide blog-slide blog-card bg-[#f8f8f8] flex flex-col rounded-[15px] group  border-none overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+                    <div class="imagediv relative">
+                    <img src="img/service-2.jpg" class="ser-image w-[356px] h-[273px] z-[10]  rounded-[50px] px-[20px] py-[30px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300 ">
+                    <button class="highlight w-[192px] h-[38px] bg-[#00d084] text-[white] py-[6px] hover:text-[black] rounded-lg absolute bottom-[50px] left-[50px]">
+                        <a href="#">Non Dividend Stocks</a>
+                  </button>
+                    </div>
+                    <div class="serinfo w-[356px]  p-[24px] rounded-b-[15px] z-[20]">
+                                <a href="#" class="text-[24px] font-medium mb-[24px]  text-left  hover:text-[#00d084]">Options Trading Bussiness</a>
+                                <p class="text-[#787878] mb-[24px] px-[20px] text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                                <div class="Admin h-[60px] w-full  px-[10px] float-left flex">
+                                    <img src="img/testimonial-2.jpg" class="h-[60px] w-[60px] rounded-full">
+                                    <div class="deta flex flex-col px-[20px] items-start">
+                                        <h5 class="text-[20px]">Admin</h5>
+                                        <p class="text-[#787878]">October 9,2025</p>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            
+           
+                <div class="swiper-slide blog-slide  bg-[#f8f8f8] flex flex-col rounded-[15px] group  border-none overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+                    <div class="imagediv relative">
+                        <img src="img/service-3.jpg" class="ser-image w-[356px] h-[273px] z-[10]  rounded-[50px] px-[20px] py-[30px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300 ">
+                        <button class="highlight w-[192px] h-[38px] bg-[#00d084] text-[white] py-[6px] hover:text-[black] rounded-lg absolute bottom-[50px] left-[50px]">
+                            <a href="#">Non Dividend Stocks</a>
+                      </button>
+                        </div>
+                    <div class="serinfo w-[356px] p-[24px] rounded-b-[15px] z-[20]">
+                                <a href="#" class="text-[24px] text-left font-medium mb-[24px]  hover:text-[#00d084]">Options Trading Bussiness</a>
+                                <p class="text-[#787878] mb-[24px] px-[20px] text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                                <div class="Admin h-[60px] w-full  float-left flex px-[10px]">
+                                    <img src="img/testimonial-3.jpg" class="h-[60px] w-[60px] rounded-full">
+                                    <div class="deta flex flex-col px-[20px] items-start">
+                                        <h5 class="text-[20px]">Admin</h5>
+                                        <p class="text-[#787878]">October 9,2025</p>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                <div class="swiper-slide blog-slide  bg-[#f8f8f8] flex flex-col  rounded-[15px] border-none px-[20px] py-[30px] group  overflow-hidden hover:overflow-hidden hover:drop-shadow-2xl">
+                    <div class="imagediv relative">
+                    <img src="img/service-4.jpg" class="ser-image w-[356px] h-[273px] z-[10]   rounded-[50px] px-[20px] py-[30px] group-hover:scale-110 group-hover: transition-transform ease-out duration-300 ">
+                    <button class="highlight w-[192px] h-[38px] bg-[#00d084] text-[white] py-[6px] hover:text-[black] rounded-lg absolute bottom-[50px] left-[50px]">
+                        <a href="#">Non Dividend Stocks</a>
+                    </button>
+                </div>
+                    <div class="serinfo w-[356px]  p-[24px] rounded-b-[15px] z-[20]">
+                                <a href="#" class="text-[24px] font-medium mb-[24px] text-left">Options Trading Bussiness</a>
+                                <p class="text-[#787878] mb-[24px] px-[20px] text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint? Excepturi facilis neque nesciunt similique officiis veritatis,</p>
+                                <div class="Admin h-[60px] w-full px-[10px] float-left flex">
+                                    <img src="img/testimonial-1.jpg" class="h-[60px] w-[60px] rounded-full">
+                                    <div class="deta flex flex-col px-[20px] items-start">
+                                        <h5 class="text-[20px]">Admin</h5>
+                                        <p class="text-[#787878]">October 9,2025</p>
+                                    </div>
+                                </div>
+                    </div>
+                </div> 
+        </div>
+    </div>
+ 
+</div> 
+<!--FAQ-->
+<div class="FAQ w-full h-auto flex flex-col p-[15px]">
+    <div class="FAQ-content w-full max-w-[800px] text-center  md:pb-[48px] m-auto">
+        <h4 class="text-[#00D048] text-[24px] font-semibold">FAQs</h4>
+        <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">Frequently Asked Questions</h1>
+        <p class="text-[#787878] px-[24px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+    </div>
+    <div class="FAQVSANS w-full h-[auto] flex justify-center gap-10  flex-wrap">
+    <div class="questions-panel bg-[#f8f8f8] p-[48px]  w-[528px]  rounded-lg ">
+        <button class="question px-[20px] py-[16px] rounded-t-lg">What Does This Tools Do ?</button>
+        <div class="answer px-[20px] py-[16px]">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+        <button class="question px-[20px] py-[16px]">What Are The Disadvantages Of Online Trading ?</button>
+        <div class="answer px-[20px] py-[16px]">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+        <button class="question px-[20px] py-[16px]">Is Online Trading Safe ?</button>
+        <div class="answer">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+        <button class="question px-[20px] py-[16px]">What Is Online Trading ,And How Does It Work ?</button>
+        <div class="answer">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+        <button class="question px-[20px] py-[16px]">What App Is Best For Online Trading ?</button>
+        <div class="answer">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+        <button class="question px-[20px] py-[16px]">What Does This Tools Do ?</button>
+        <div class="answer">
+            <p>Placeholder content for this accordion, which is intended to demonstrate the .accordion-flush class. This is the first item's accordion body.</p>
+        </div>
+    </div>
+    <div class="sideImg  bg-[#00d084] px-[24px] my-[48px] w-[528px]  rounded-lg">
+        <img src="img/about-2.png ">
+    </div>  
+
+    </div> 
+   
+</div> 
+    <!--team-->
+<div class="Team w-full h-auto flex flex-col p-[12px]">
+    <div class="Team-content w-full max-w-[800px] text-center  md:pb-[48px] m-auto">
+        <h4 class="text-[#00d084] text-[24px] font-semibold">Our Team</h4>
+        <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">Meet Our Advisers</h1>
+        <p class="text-[#787878] px-[30px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+    </div>
+    <div class="Team-cards  flex flex-wrap justify-center gap-7 px-[30px]">
+        <div class="card w-[261px] h-[372px] flex flex-col items-center relative group overflow-hidden">
+            <img src="img/team-1.jpg" class="h-[195px] w-[195px] border-[5px] border-dotted border-[#00d084] rounded-full z-10 group-hover:border-[white]">
+            <div class="overlay absolute bottom-0 left-0 right-0 bg-[#00d084] rounded-xl overflow-hidden w-full h-0 group-hover:h-[278px] transition-all duration-500 ease-in z-0"></div>
+            <div class="team-info w-[261px] h-[278px] py-[25px] mt-[-10px] z-10  flex flex-col items-center justify-end absolute bottom-0 group">
+                <h1 class="text-[24px] text-center group-hover:text-[white]">David James</h1>
+                <p class="text-[#787878] text-center group-hover:text-[white]">Profession</p>
+                <div class="media flex justify-end m-[20px] mt-[30px] h-[30px] w-[211px]">
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-facebook-f"></i></div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-twitter"></i></div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-instagram"></i></div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-linkedin-in"></i></div>
+                </div>      
+            </div>
+        </div>
+        <div class="card w-[261px] h-[372px] bg-[#f8f8f8] flex flex-col items-center relative group overflow-hidden">
+            <img src="img/team-2.jpg" class="h-[195px] w-[195px] border-[5px] border-dotted border-[#00d084] rounded-full z-10 group-hover:border-[white]">
+            <div class="overlay absolute bottom-0 left-0 right-0 bg-[#00d084] rounded-xl overflow-hidden w-full h-0 group-hover:h-[278px] transition-all duration-500 ease-in z-0"></div>
+            <div class="team-info w-[261px] h-[278px] py-[25px] mt-[-10px] z-10 flex flex-col items-center justify-end absolute bottom-0 group">
+                <h1 class="text-[24px] text-center group-hover:text-[white]">David James</h1>
+                <p class="text-[#787878] text-center group-hover:text-[white]">Profession</p>
+                <div class="media flex justify-end m-[20px] mt-[30px] h-[30px] w-[211px]">
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-facebook-f"></i></div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-twitter"></i></div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-instagram"></i></div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-linkedin-in"></i></div>
+                </div>      
+            </div>
+        </div>
+        <div class="card w-[261px] h-[372px] bg-[#f8f8f8] flex flex-col items-center relative group overflow-hidden">
+            <img src="img/team-3.jpg" class="h-[195px] w-[195px] border-[5px] border-dotted border-[#00d084] rounded-full z-10 group-hover:border-[white]">
+            <div class="overlay absolute bottom-0 left-0 right-0 bg-[#00d084] rounded-xl overflow-hidden w-full h-0 group-hover:h-[278px] transition-all duration-500 ease-in z-0"></div>
+            <div class="team-info w-[261px] h-[278px] py-[25px] mt-[-10px] z-10 flex flex-col items-center justify-end absolute bottom-0 group">
+                <h1 class="text-[24px] text-center group-hover:text-[white]">David James</h1>
+                <p class="text-[#787878] text-center group-hover:text-[white]">Profession</p>
+                <div class="media flex justify-end m-[20px] mt-[30px] h-[30px] w-[211px]">
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-facebook-f"></i></div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-twitter"></i></div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-instagram"></i></div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-linkedin-in"></i></div>
+                </div>      
+            </div>
+        </div>
+        <div class="card w-[261px] h-[372px] bg-[#f8f8f8] flex flex-col items-center relative group overflow-hidden">
+            <img src="img/team-4.jpg" class="h-[195px] w-[195px] border-[5px] border-dotted border-[#00d084] rounded-full z-10 group-hover:border-[white]">
+            <div class="overlay absolute bottom-0 left-0 right-0 bg-[#00d084] rounded-xl overflow-hidden w-full h-0 group-hover:h-[278px] transition-all duration-500 ease-in z-0"></div>
+            <div class="team-info w-[261px] h-[278px] py-[25px] mt-[-10px] z-10 flex flex-col items-center justify-end absolute bottom-0 group">
+                <h1 class="text-[24px] text-center group-hover:text-[white]">David James</h1>
+                <p class="text-[#787878] text-center group-hover:text-[white]">Profession</p>
+                <div class="media flex justify-end m-[20px] mt-[30px] h-[30px] w-[211px]">
+                    <div class="fb mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-facebook-f"></i></div>
+                    <div class="twitter mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-twitter"></i></div>
+                    <div class="insta mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-instagram"></i></div>
+                    <div class="linkedin mr-[8px] h-[44px] w-[44px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-linkedin-in"></i></div>
+                </div>      
+            </div>
+        </div>
+        
+     
+    </div>
+</div> 
+<!--testimonial-->
+<div class="testimonial-content w-full max-w-[800px] text-center  md:pb-[48px] m-auto">
+    <h4 class="text-[#00D048] text-[24px] font-semibold">Our Testimonial</h4>
+    <h1 class=" text-[32px] leading-tight md:text-[48px] mb-[24px] font-semibold">Benifits Offer</h1>
+    <p class="text-[#787878] px-[30px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+</div>
+   
+    <div id="TEST-SWIPER" class="swiper  mySwiper  md:py-[95px] relative px-[10px] md:py-[150px]  md:px-[50px] overflow-hidden">
+        
+        <div class="button-next absolute top-[10px] right-[20px] h-[36px] w-[78px] rounded-[20px] bg-[#00d084] text-[white] flex justify-center items-center mx-[15px]"><i class="fa fa-angle-right "></i></div>
+        <div class="button-prev absolute top-[10px] px-[20px] mx-[30px] h-[36px] w-[78px] rounded-[20px] bg-[#00d084] text-[white] flex justify-center items-center"><i class="fa fa-angle-left "></i></div>
+        
+        <div class="swiper-wrapper pb-[100px]">                       
+            <div class="swiper-slide h-[auto] md:h-[400px] w-[100%] bg-[#f8f8f8] group flex flex-col rounded-[15px] group relative hover:drop-shadow-2xl px-0 sm:px-[25px] sm:pb-[25px]">
+               
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  bg-[#f8f8f8] flex rounded-full mt-[20px] ml-[-230px]">
+                    <i class="fas fa-quote-left fa-2x text-[#00d084] h-[70px] w-[70px] flex justify-center items-center"></i>
+                </div>      
+                <div class="testimonial-img">
+                    <img src="img/testimonial-1.jpg" class="h-[100px] w-[100px] rounded-full mx-auto" alt="Testimonial Image">
+                </div>      
+                <div class="testimonial-text">
+                    <p class="text-[#787878] py-[25px] text-center">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis blanditiis excepturi quisquam temporibus voluptatum reprehenderit culpa, quasi corrupti laborum accusamus.
+                    </p>
+                </div>                  
+                <div class="testimonial-title w-full h-[54px] sm:px-[20px] lg:px-[5px] flex justify-between items-center">
+               
+                    <div class="title flex flex-col items-start">
+                        <h4 class="text-[22px]">Person Name</h4>
+                        <p class="text-[#787878]">Profession</p>
+                    </div>               
+                    <div class="rating flex">
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                    </div>
+                </div>
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  ml-[250px] bg-[white] flex  rounded-full">
+                    <i class="fas fa-quote-right fa-2x text-[#00d084] h-[70px] w-[70px]  flex justify-center items-center "></i>
+                </div>
+            </div>
+        
+            <div class="swiper-slide h-[auto] md:h-[400px] w-[100%] bg-[#f8f8f8] group flex flex-col rounded-[15px] group relative hover:drop-shadow-2xl px-0 sm:px-[25px] sm:pb-[25px]">
+               
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  bg-[#f8f8f8] flex rounded-full mt-[20px] ml-[-230px]">
+                    <i class="fas fa-quote-left fa-2x text-[#00d084] h-[70px] w-[70px] flex justify-center items-center"></i>
+                </div>      
+                <div class="testimonial-img">
+                    <img src="img/testimonial-2.jpg" class="h-[100px] w-[100px] rounded-full mx-auto" alt="Testimonial Image">
+                </div>      
+                <div class="testimonial-text">
+                    <p class="text-[#787878] py-[25px] text-center">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis blanditiis excepturi quisquam temporibus voluptatum reprehenderit culpa, quasi corrupti laborum accusamus.
+                    </p>
+                </div>                  
+                <div class="testimonial-title w-full h-[54px] sm:px-[20px] lg:px-[5px] flex justify-between items-center">
+               
+                    <div class="title flex flex-col items-start">
+                        <h4 class="text-[22px]">Person Name</h4>
+                        <p class="text-[#787878]">Profession</p>
+                    </div>               
+                    <div class="rating flex">
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                    </div>
+                </div>
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  ml-[250px] bg-[white] flex  rounded-full">
+                    <i class="fas fa-quote-right fa-2x text-[#00d084] h-[70px] w-[70px]  flex justify-center items-center "></i>
+                </div>
+            </div>
+        
+            <div class="swiper-slide h-[auto] md:h-[400px] w-[100%] bg-[#f8f8f8] group flex flex-col rounded-[15px] group relative hover:drop-shadow-2xl px-0 sm:px-[25px] sm:pb-[25px]">
+               
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  bg-[#f8f8f8] flex rounded-full mt-[20px] ml-[-230px]">
+                    <i class="fas fa-quote-left fa-2x text-[#00d084] h-[70px] w-[70px] flex justify-center items-center"></i>
+                </div>      
+                <div class="testimonial-img">
+                    <img src="img/testimonial-3.jpg" class="h-[100px] w-[100px] rounded-full mx-auto" alt="Testimonial Image">
+                </div>      
+                <div class="testimonial-text">
+                    <p class="text-[#787878] py-[25px] text-center">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis blanditiis excepturi quisquam temporibus voluptatum reprehenderit culpa, quasi corrupti laborum accusamus.
+                    </p>
+                </div>                  
+                <div class="testimonial-title w-full h-[54px] md:px-[20px] lg:px-[5px] flex justify-between items-center">
+               
+                    <div class="title flex flex-col items-start">
+                        <h4 class="text-[22px]">Person Name</h4>
+                        <p class="text-[#787878]">Profession</p>
+                    </div>               
+                    <div class="rating flex">
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                    </div>
+                </div>
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  ml-[250px] bg-[white] flex  rounded-full">
+                    <i class="fas fa-quote-right fa-2x text-[#00d084] h-[70px] w-[70px]  flex justify-center items-center "></i>
+                </div>
+            </div>
+        
+            <div class="swiper-slide h-[auto] md:h-[400px] w-[100%] bg-[#f8f8f8] group flex flex-col rounded-[15px] group relative hover:drop-shadow-2xl px-0 sm:px-[25px] sm:pb-[25px]">
+               
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  bg-[#f8f8f8] flex rounded-full mt-[20px] ml-[-230px]">
+                    <i class="fas fa-quote-left fa-2x text-[#00d084] h-[70px] w-[70px] flex justify-center items-center"></i>
+                </div>      
+                <div class="testimonial-img">
+                    <img src="img/testimonial-1.jpg" class="h-[100px] w-[100px] rounded-full mx-auto" alt="Testimonial Image">
+                </div>      
+                <div class="testimonial-text">
+                    <p class="text-[#787878] py-[25px] text-center">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis blanditiis excepturi quisquam temporibus voluptatum reprehenderit culpa, quasi corrupti laborum accusamus.
+                    </p>
+                </div>                  
+                <div class="testimonial-title w-full h-[54px] md:px-[20px] lg:px-[5px] flex justify-between items-center">
+               
+                    <div class="title flex flex-col items-start">
+                        <h4 class="text-[22px]">Person Name</h4>
+                        <p class="text-[#787878]">Profession</p>
+                    </div>               
+                    <div class="rating flex">
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                        <i class="fas fa-star text-[#00d084]"></i>
+                    </div>
+                </div>
+                <div class="testimonial-quote font-[Oswald] h-[70px] w-[70px]  ml-[250px] bg-[white] flex  rounded-full">
+                    <i class="fas fa-quote-right fa-2x text-[#00d084] h-[70px] w-[70px]  flex justify-center items-center "></i>
+                </div>
+            </div>
+        
+            
+
+                 
+        </div>
+    </div>
+
+<!--footer-->
+<footer class="footer bg-[#17303B] w-full md:px-[12px] md:py-[48px] h-auto flex justify-center">
+    <div class="foot-content h-auto w-[90%] border-t-[1px] border-t-[gray] border-b-[1px] border-t-[gray] flex flex-wrap ">
+          <div class="stocker mt-[48px] h-[268px] w-full md:w-[448px]  md:px-[24px]">
+            <h1 class="text-[#f8f8f8] text-[24px] mb-[8px] flex"> <i class="fas fa-search-dollar me-3 alt pt-[10px]"></i> Stocker</h1>
+            <p class="text-[#787878] mb-[24px] text-[18px] text-left">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing...</p>
+             <div class="download-btns flex">
+                <div class="appstore h-[80px] w-[180px] bg-[#00d084] mr-[8px] px-[16px] py-[8px] rounded-lg flex justify-center items-center">
+                    <div class="apple text-[white]"><i class="fa-solid fa-apple-whole"></i></i></div>
+                    <div class="details flex flex-col ml-[16px] text-[#f8f8f8]">
+                        <small>Download on the</small>
+                        <h5>App Store</h5>
+                    </div>
+                </div>
+                <div class="playstore h-[80px] w-[150px] bg-[black] px-[16px] py-[8px] rounded-lg flex justify-center items-center">
+                    <div class="apple text-[#00d084]"><i class="fas fa-play"></i></i></div>
+                    <div class="details flex flex-col ml-[16px] text-[#00d084]">
+                        <small>Get it on</small>
+                        <h5>Google Play</h5>
+                    </div>
+                </div>
+             </div>
+        </div>
+          <div class="quick-links  flex-col mt-[48px] h-[262px] w-[176px] px-[24px]">
+            <h1 class="text-[#f8f8f8] mb-[24px] text-[24px]">Quick Links</h1>
+            <div class="links flex flex-col  gap-2">
+            <a href="#about"><i class="fa fa-angle-right mr-[8px] text-[12px] text-[#787878]"></i>About Us</a>
+            <a href="#features"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Features</a>
+            <a href="#"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Attractions</a>
+            <a href="#"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Tickets</a>
+            <a href="#blogs"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Blogs</a>
+            <a href="#contact-Us"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Contact Us</a>
+        </div>
+          </div>
+          <div class="support  flex-col mt-[48px] h-[262px] w-[243px] px-[24px]">
+            <h1 class="text-[#f8f8f8] mb-[24px] text-[24px]">Support</h1>
+            <div class="links flex flex-col  gap-2">
+            <a href="#about"><i class="fa fa-angle-right mr-[8px] text-[12px] text-[#787878]"></i>Privacy Policy</a>
+            <a href="#features"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Terms & Conditions</a>
+            <a href="#"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Disclaimer</a>
+            <a href="#"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Support</a>
+            <a href="#blogs"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>FAQ</a>
+            <a href="#contact-Us"><i class="fa fa-angle-right h-[16px] w-[8px] mr-[8px] text-[12px] text-[#787878]"></i>Help</a>
+        </div>
+          </div>
+          <div class="contact-info flex-col mt-[48px] h-[262px] w-[291px] px-[24px]">
+            <h1 class="text-[#f8f8f8] mb-[24px] text-[24px]">Contact Info</h1>
+            <div class="info flex flex-col mb-[24px] gap-2">
+            <h1 class="text-[#f8f8f8]"><i class="fas fa-map-marker-alt   py-[5px]"></i>
+                123 Street New York.USA</h1>
+                <h1 class="text-[#f8f8f8]"> <i class="fas fa-phone  py-[5px]"></i>
+               +01234567890</h1>
+               <h1 class="text-[#f8f8f8]"><i class="fas fa-envelope  py-[5px]"></i>
+                info@example.com</h1>
+                <h1 class="text-[#f8f8f8] "><i class="fab fa-firefox-browser  py-[5px]"></i>
+                    Yoursite@ex.com</h1>
+            </div>
+                <div class="media flex justify-start  mt-[30px] h-[30px] w-[211px]">
+                    <div class="fb mr-[8px] h-[34px] w-[34px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-facebook-f"></i></div>
+                    <div class="twitter mr-[8px] h-[34px] w-[34px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-twitter"></i></div>
+                    <div class="insta mr-[8px] h-[34px] w-[34px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-instagram"></i></div>
+                    <div class="linkedin mr-[8px] h-[34px] w-[34px] bg-[#00d084] text-[white] rounded-full flex justify-center items-center group-hover:bg-[white] group-hover:text-[black]"><i class="fab fa-linkedin-in"></i></div>
+                </div>    
+          </div>
+    </div>
+</footer>
+<div class="final w-full bg-[black] h-[auto] py-[24px] px-[12px] flex justify-around text-[18px]  gap-[16px] flex-wrap lg:h-[72px]  ">
+    <div class="reserved">
+        <h1 class="text-[#787878] "><span class="underline text-[white]">&copy; Your SiteName</span>,All right reserved</h1>
+    </div>
+    <div class="designed px-[12px]">
+        <h1 class="text-[#787878]">Designed By <span class="text-[white] underline">SDBNB</span> Distributed By <span class="text-[white] underline">Dharaneeswar Reddy Avula</span></h1>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+
+      <script>
+    
+let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1;}
+            if (n < 1) {slideIndex = slides.length;}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+            slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+        }
+      
+     
+        // Scroll event to reveal blog content and swiper
+
+        var blog = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 2000,
+            },
+            navigation: {
+                nextEl: ".button-next",
+                prevEl: ".button-prev",
+            },
+            breakpoints: {
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween:20,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 40,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+            },
+        });
+        var test_swipe = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 2000,
+            },
+            navigation: {
+                nextEl: ".button-next",
+                prevEl: ".button-prev",
+            },
+            breakpoints: {
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween:30,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 40,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+            },
+        });
+        window.addEventListener('scroll', function () {
+            const reveal_blog = document.querySelector('.blog-content'); 
+            const revealblogswiper = document.querySelector('.blogSwiper'); 
+            
+            var windowheight = window.innerHeight;
+            var revealtop = reveal_blog.getBoundingClientRect().top;
+            var revealpoint = 150;
+    
+            if (revealtop < windowheight - revealpoint) {
+                reveal_blog.classList.add('make-blog-active');
+                revealblogswiper.classList.add('make-blogswipe-active');
+            } else {
+                reveal_blog.classList.remove('make-blog-active');
+                revealblogswiper.classList.remove('make-blogswipe-active');
+            }
+        });
+  
+        
+  </script>
+    </body>
+    </html>
