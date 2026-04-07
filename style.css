@@ -691,7 +691,7 @@ nav{
             }
         }
         
-        .card {
+.card {
     position: relative;
     transform: translateY(150px);
     opacity: 0;
